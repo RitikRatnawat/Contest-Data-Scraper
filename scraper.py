@@ -2,12 +2,13 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-
+# Selected Platforms Contest Page URLs
 CODECHEF_CONTEST_PAGE_URL = "https://www.codechef.com/contests"
 LEETCODE_CONTEST_PAGE_URL = "https://leetcode.com/contest"
 CODEFORCES_CONTEST_PAGE_URL = "https://codeforces.com/contests"
 
 
+# Function to configure Webdriver
 def get_driver():
     driver_options = Options()
     driver_options.add_argument("--headless")
@@ -17,6 +18,7 @@ def get_driver():
     return driver
 
 
+# Function to process the CodeChef Contest Data
 def get_CodeChef_Data(driver):
     driver.get(CODECHEF_CONTEST_PAGE_URL)
     table = driver.find_element_by_id("future-contests-data")
@@ -47,6 +49,7 @@ def get_CodeChef_Data(driver):
     return contest_data
 
 
+# Function to process the LeetCode Contest Data
 def get_LeetCode_Data(driver):
     driver.get(LEETCODE_CONTEST_PAGE_URL)
     wrapper = driver.find_element_by_class_name("swiper-wrapper")
@@ -67,6 +70,7 @@ def get_LeetCode_Data(driver):
     return contest_data
         
     
+# Function to process the Codeforces Contest Data
 def get_Codeforces_data(driver):
     driver.get(CODEFORCES_CONTEST_PAGE_URL)
     table = driver.find_element_by_class_name("datatable")
@@ -97,7 +101,8 @@ def get_Codeforces_data(driver):
         
     return contest_data
     
-    
+  
+# Function to Process and Save data to a file  
 def run_contest_scraper():
     print("Creating Web Driver")
     driver = get_driver()
